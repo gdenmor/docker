@@ -1,0 +1,27 @@
+version: "3.0"
+services: 
+  ojala:
+    build: ./OJALA #'ruta del dockerfile'
+    ports: 
+      - 8085:80
+    volumes:
+      - "./OJALA:/var/www/html" #'ruta del dockerfile'
+    container_name: ojala
+    depends_on:
+      - datos
+  correo:
+    build: ./CORREO #'ruta del dockerfile'
+    volumes:
+      - "./CORREO:/var/www/html" #'ruta del dockerfile'
+    container_name: correo
+    depends_on: 
+      - datos
+  datos:
+    build: ./DATO
+  cestero:
+    build: ./CESTERO
+    volumes:
+      - "./CESTERO:/var/www/html"
+    container_name: cestero
+    depends_on:
+      - datos
