@@ -42,8 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($contenido==""){
     
         }else{
-            $filename='/var/www/html/documento.pdf';
-            file_put_contents($filename,$contenido);
             $mail = new PHPMailer();
             $mail->IsSMTP();
             // cambiar a 0 para no ver mensajes de error
@@ -53,10 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Host = "smtp.gmail.com";
             $mail->Port = 587;
             // introducir usuario de google
-            $mail->Username = 'gdeniamoreno@gmail.com';
+            $mail->Username = $nombre;
             // introducir clave
             $mail->Password = "pgsi cpbp bgqg tjzw";
-            $mail->SetFrom($nombre.'@gmail.com', 'HOLA');
+            $mail->SetFrom($nombre, 'HOLA');
             // asunto
             $mail->Subject = "DOCKER";
             $mail->isHTML(true);
@@ -66,6 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //$mail->addAttachment("hola.html");
             // destinatario
             $mail->AddAddress('gabrieldeniamoreno@gmail.com', "Test");
+
+            $filename='/var/www/html/documento.pdf';
+            file_put_contents($filename,$contenido);
 
             $mail->addAttachment($filename, 'Docker');
             // enviar

@@ -2,7 +2,7 @@
     require_once "./vendor/autoload.php";
     use Dompdf\Dompdf;
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
-            $tipo=$_POST['objeto'];
+            $tipo=$_POST['tipo'];
             $pdfprovisional=new Dompdf();
             $html='<!DOCTYPE html>
             <html lang="en">
@@ -13,9 +13,9 @@
             </head>
             <body>';
             $html.='<p>'.$tipo.'</p>';
-            if ($tipo=="con jamon"){
-                $html.='<img src="imagen.jpg">';
-                $pdfprovisional->getOptions()->setChroot("/var/www/html/imagen.jpg");
+            if ($tipo=="con jamón"){
+                $html.='<img src="../CESTERO:/var/www/html/imagen.jpg">';
+                $pdfprovisional->getOptions()->setChroot("../CESTERO:/var/www/html/imagen.jpg");
             }
             $html.='</body>
             </html>';
